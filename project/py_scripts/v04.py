@@ -1,4 +1,4 @@
-from machine import Pin, ADC
+from machine import Pin, ADC, PWM
 from time import sleep
 
 # Wait for USB to become ready
@@ -11,21 +11,26 @@ data_pin = 13
 analog_data_pin = 26
 
 #configure GPIO Pin as an output pin and create and led object for Pin class
-led = Pin(led_pin, Pin.OUT)
-led2 = Pin(led2_pin, Pin.OUT)
+led = PWM(Pin(led_pin))
+led2 = PWM(Pin(led2_pin))
+
+#set the PWM frequnecy for LED's
+led.freq(1000)
+led2.freq(1000)
 
 #configure GPIO Pin as an input pin and create a data object for Pin class
 data = Pin(data_pin, Pin.IN)
 
 #configure GPIO Pin as an ADC pin and create a data object for ADC class that is a composition of the Pin class
-adc_value = ADC(Pin(analog_data_pin))
+analog_data = ADC(Pin(analog_data_pin))
 
 while True:
-    if data.value() > 0.5:
-        led.value(True)  #turn on the LED
-        led2.value(False)  #turn off the LED2
+    adc_value = analog_data.read_u16()  # 0-65535
+    if data.value() == 1:
+        led.duty_u16(adc_value)
+        led2.duty_u16(adc_value)
     else:
-        led.value(False)  #turn off the LED
-        led2.value(True)  #turn on the LED2
-    print(print(f"Analog: {adc_value}"))
+        led.duty_u16(0)
+        led2.duty_u16(0)
+    print(f"Digital: {data.value()} , Analog: {adc_value}")
     sleep(0.1)
