@@ -53,4 +53,4 @@ while True:
     mapped_value = map_range(adc_value, 0, 65535, 0, 180)
     servo.duty_ns(set_angle(mapped_value)*1000)
     print(f"Digital: {data.value()} , Analog: {adc_value} , Servo: {servo.duty_ns()}")
-    sleep(0.1)
+    sleep(0.1)            
