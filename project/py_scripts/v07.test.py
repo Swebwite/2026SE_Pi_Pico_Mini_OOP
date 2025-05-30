@@ -1,7 +1,6 @@
 # modules
 from machine import I2C, Pin    # since I2C communication would be used, I2C class is imported
 from time import sleep
-import random
 
 # very important
 # this module needs to be saved in the Raspberry Pi Pico in order for the LCD I2C to be used
@@ -17,14 +16,13 @@ I2C_ADDR = i2c.scan()[0]
 # creating an LCD object using the I2C address and specifying number of rows and columns in the LCD
 # LCD number of rows = 2, number of columns = 16
 lcd = I2cLcd(i2c, I2C_ADDR, 2, 16)
+# lcd.backlight_off()
 
 # continuously print and clear "Hello world!" text in the LCD screen while the board has power
 while True:
-    ginger = ['g', 'i', 'n', 'g', 'e', 'r']
-    girneg = random.choice(ginger) + random.choice(ginger) + random.choice(ginger) + random.choice(ginger) + random.choice(ginger) + random.choice(ginger)
     # putstr method allows printing of the text in the LCD screen
-    lcd.putstr(girneg)
     # for other methods that can be used, check lcd_api module
+    lcd.putstr("Hello world!")
     sleep(5)        # "Hello world!" text would be displayed for 5 secs
     lcd.clear()
     sleep(1)        # clear the text for 1 sec then print the text again
