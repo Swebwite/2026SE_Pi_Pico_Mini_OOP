@@ -18,13 +18,14 @@ I2C_ADDR = i2c.scan()[0]
 # LCD number of rows = 2, number of columns = 16
 lcd = I2cLcd(i2c, I2C_ADDR, 2, 16)
 
+ginger = ['g', 'i', 'n', 'g', 'e', 'r']
+
 # continuously print and clear "Hello world!" text in the LCD screen while the board has power
 while True:
-    ginger = ['g', 'i', 'n', 'g', 'e', 'r']
     girneg = random.choice(ginger) + random.choice(ginger) + random.choice(ginger) + random.choice(ginger) + random.choice(ginger) + random.choice(ginger)
     # putstr method allows printing of the text in the LCD screen
     lcd.putstr(girneg)
     # for other methods that can be used, check lcd_api module
-    sleep(5)        # "Hello world!" text would be displayed for 5 secs
+    sleep(4)        # "Hello world!" text would be displayed for 5 secs
     lcd.clear()
     sleep(1)        # clear the text for 1 sec then print the text again
