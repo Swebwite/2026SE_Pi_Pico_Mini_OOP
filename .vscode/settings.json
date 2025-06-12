@@ -25,7 +25,7 @@
     "./examples/smooth_"
   ],
   "micropico.syncFolder": "project",
-  "workbench.colorTheme": "Default Dark+",
+  "workbench.colorTheme": "Dracula Theme",
   "workbench.iconTheme": "vscode-icons",
   "github.copilot.enable": {
     "python": false,

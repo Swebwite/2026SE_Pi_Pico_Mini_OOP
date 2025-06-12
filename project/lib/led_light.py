@@ -8,21 +8,22 @@ class Led_Light(Pin):
         self.__debug = debug
         self.__pin = pin
         self.__flashing = flashing
+        self.__last_toggle_time = time()
 
     def on(self):
         self.high()
         if self.__debug:
-            print(f'Led connected to Pin {self.__pin} is on')
+            print(f'Led connected to Pin {self.__pin} is {self.led_light_state}')
 
     def off(self):
         self.low()
         if self.__debug:
-            print(f'Led connected to Pin {self.__pin} is off')
+            print(f'Led connected to Pin {self.__pin} is {self.led_light_state}')
 
     def toggle(self):
-        if self.value():
+        if self.value() == 0:
             self.on()
-        else:
+        if self.value == 1:
             self.off()
 
     @property
@@ -31,14 +32,13 @@ class Led_Light(Pin):
     
     @led_light_state.setter
     def led_light_state(self, value):
-        if value == 0:
-            self.off()
         if value == 1:
+            self.off()
+        if value == 0:
             self.on()
 
-
-red_light = Led_Light(3, False, False)
-
-while True:
-    red_light.toggle()
-    sleep(0.5)
+    def flash(self):
+        now = time()
+        if self.__flashing and now - self.__last_toggle_time >= 0.5:
+            self.toggle()
+            self.__last_toggle_time = now
