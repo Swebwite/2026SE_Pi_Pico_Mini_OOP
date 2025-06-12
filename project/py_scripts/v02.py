@@ -1,3 +1,7 @@
+'''
+Hardware Unit Test
+'''
+
 from machine import Pin
 from time import sleep
 
@@ -17,6 +21,7 @@ led2 = Pin(led2_pin, Pin.OUT)
 data = Pin(data_pin, Pin.IN)
 
 while True:
+<<<<<<< HEAD
     if data.value() == 1:
         led.value(True)  #turn on the LED
         led2.value(False)  #turn off the LED2
@@ -24,3 +29,17 @@ while True:
         led.value(False)  #turn off the LED
         led2.value(True)  #turn on the LED2
     sleep(0.1)
+=======
+
+    buzzer.freq(1000)
+    # buzzer.duty(512)
+
+    led_car_red.high()
+    led_car_orange.high()
+    led_car_green.high()
+
+    led_pedestrian_red.high()
+    led_pedestrian_green.high()
+
+    print(pedestrian_button.value())
+>>>>>>> 76b3ae39324477d41c965023028003a5e4a734e3

@@ -8,9 +8,7 @@ sleep(0.1)
 led_pin = 25
 led2_pin = 15
 
-#configure GPIO Pin as an output pin and create and led object for Pin class
-led = Pin(led_pin, Pin.OUT)
-led2 = Pin(led2_pin, Pin.OUT)
+pin = Pin("LED", Pin.OUT)
 
 while True:
    led.value(True)  #turn on the LED
