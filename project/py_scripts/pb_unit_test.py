@@ -14,3 +14,6 @@ print('testing button')
 while True:
     button.button_state
     sleep(0.5)
+    if button.button_state == True:
+        sleep(3)
+        button.button_state = False
