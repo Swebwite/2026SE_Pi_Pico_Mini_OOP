@@ -7,6 +7,7 @@ led_y = Pin(5, Pin.OUT)
 led_g = Pin(7, Pin.OUT)
 led_w = Pin(17, Pin.OUT)
 led_s = Pin(19, Pin.OUT)
+buzzer = Pin(27, Pin.OUT)
 '''
 button = Pedestrian_Button(22, True)
 
