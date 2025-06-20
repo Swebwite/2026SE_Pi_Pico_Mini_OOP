@@ -6,14 +6,27 @@ from machine import Pin
 from time import sleep, time
 
 
-led_tr = Led_light(3, False, True)
-led_ta = Led_light(5, False, True)
-led_tg = Led_light(7, False, True)
-led_pg = Led_light(17, False, True)
-led_pr = Led_light(19, False, True)
+led_tr = Led_Light(3, False, True)
+led_ta = Led_Light(5, False, True)
+led_tg = Led_Light(7, False, True)
+led_pg = Led_Light(17, False, True)
+led_pr = Led_Light(19, False, True)
 buzzer = Audio_Notification(27, True)
 button = Pedestrian_Button(22, True)
 
-def Subsystem_Driver():
-    print('testing idle')
-    
+light = TrafficLightSystem(led_tr, led_ta, led_tg, False)
+
+def Traffic_Subsystem_Driver():
+    print('testing traffic light')
+    sleep(2)
+    light.show_red()
+    print('Pass if: red ON, amber OFF, green OFF')
+    sleep(5)
+    light.show_amber()
+    print('Pass if: red OFF, amber ON, green OFF')
+    sleep(5)
+    light.show_green()
+    print('Pass if: red OFF, amber OFF, green ON')
+    sleep(5)
+
+Traffic_Subsystem_Driver()

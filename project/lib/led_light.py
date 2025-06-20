@@ -1,5 +1,5 @@
 from machine import Pin
-from time import sleep
+from time import sleep, time
 
 class Led_Light(Pin):
     # Sub Class inherits the 'Pin' Class
@@ -9,6 +9,7 @@ class Led_Light(Pin):
         self.__pin = pin
         self.__flashing = flashing
         self.led_light_state
+        self.__last_toggle_time = time()
 
     def on(self):
         # method overriding polymorphism of the Super Class
@@ -41,3 +42,9 @@ class Led_Light(Pin):
             self.off()
         elif value == 0:
             self.on()
+
+    def flash(self):
+        now = time()
+        if self.__flashing and now - self.__last_toggle_time >= 0.5:
+            self.toggle()
+            self.__last_toggle_time = now

@@ -2,11 +2,12 @@ from time import sleep
 from led_light import Led_Light
 
 # Replace 3 with a valid GPIO pin number for your board
-led = Led_Light(3, flashing=True, debug=True)
+led = Led_Light(3, True, True)
+
 
 print("Testing on()")
 led.on()
-sleep(0.1)
+sleep(0.7)
 if led.value() == 1:
     print(".on() method passed")
 else:
@@ -14,7 +15,7 @@ else:
 
 print("Testing off()")
 led.off()
-sleep(0.1)
+sleep(0.7)
 if led.value() == 0:
     print(".off() method passed")
 else:
@@ -23,14 +24,14 @@ else:
 
 print("Testing toggle()")
 led.toggle()
-sleep(0.1)
+sleep(0.7)
 if led.value() == 1:
     print(".toggle() .on() method passed")
 else:
     print(".toggle() .on() method failed")
 
 led.toggle()
-sleep(0.1)
+sleep(0.7)
 if led.value() == 0:
     print(".toggle() .off() method passed")
 else:
@@ -39,7 +40,7 @@ else:
 
 print("Testing led_light_state property (getter)")
 state = led.led_light_state
-sleep(0.1)
+sleep(0.7)
 if state == led.value():
     print(".led_light_state passed")
 else:
@@ -52,3 +53,8 @@ if set1 == 1 and set0 == 0 :
     print(".led_light_state setter passed")
 else:
     print(".led_light_state setter failed")
+
+print("Testing flash()")
+while True:
+    led.flash()
+sleep(2)
