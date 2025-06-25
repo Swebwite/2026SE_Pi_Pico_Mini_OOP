@@ -57,4 +57,3 @@ else:
 print("Testing flash()")
 while True:
     led.flash()
-sleep(2)

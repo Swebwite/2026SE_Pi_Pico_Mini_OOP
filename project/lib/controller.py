@@ -42,22 +42,22 @@ class PedestrianSubsystem:
     
     def show_stop(self):
         if self.__debug:
-            print("Pedestiran: Red ON")
+            print("Pedestrian: Red ON")
         self.__red.on()
         self.__green.off()
         self.__buzzer.warning_off()
 
     def show_walk(self):
         if self.__debug:
-            print("Pedestiran: Green ON, Warning ON")
+            print("Pedestrian: Green ON, Warning ON")
         self.__red.off()
         self.__green.on()
         self.__buzzer.warning_on()
 
     def show_warning(self):
         if self.__debug:
-            print("Pedestiran: Red FLASHING")
-        self.__red.flashing()
+            print("Pedestrian: Red FLASHING")
+        self.__red.flash()
         self.__green.off()
         self.__buzzer.warning_off()
 

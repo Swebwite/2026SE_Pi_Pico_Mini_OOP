@@ -8,8 +8,7 @@ class Led_Light(Pin):
         self.__debug = debug
         self.__pin = pin
         self.__flashing = flashing
-        self.led_light_state
-        self.__last_toggle_time = time()
+        self.__last_toggle_time = 0
 
     def on(self):
         # method overriding polymorphism of the Super Class
