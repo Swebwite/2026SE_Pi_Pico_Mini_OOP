@@ -21,10 +21,14 @@ class Audio_Notification(PWM):
     def warning_on(self):
         if self.__debug:
             print('Warning on') # debug message
+        self.beep(freq=500, duration=500)
+        self.beep(freq=1000, duration=500)
+        '''
         now = time()
         if now - self.__last_toggle_time >= 0.5: #checks if it has been 0.5s or more
             self.beep(freq=500, duration=100)
             self.__last_toggle_time = now # resets last toggle time
+        '''
     
     def warning_off(self):
         if self.__debug:

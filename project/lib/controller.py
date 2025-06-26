@@ -66,3 +66,39 @@ class PedestrianSubsystem:
 
     def reset_button(self):
         self.__button.button_state(False)
+
+class Controller:
+    def __init__(self, pred, pgreen, tred, tamber, tgreen, button, buzzer, debug=False):
+        self.__traffic_lights = TrafficLightSystem(tred, tamber, tgreen, debug=False)
+        self.__pedestrian_signals = PedestrianSubsystem(pred, pgreen, button, buzzer, debug=False)
+        self.__debug = debug
+        self.state = 'IDLE'
+        self.last_state_change = time()
+
+    def set_idle_state(self):
+        if self.__debug:
+            print('System: IDLE State')
+        self.__traffic_lights.show_green()
+        self.__pedestrian_signals.show_stop()
+    
+    def set_change_state(self):
+        if self.__debug:
+            print('System: CHANGE State')
+        self.__traffic_lights.show_amber()    
+        self.__pedestrian_signals.show_stop()
+    
+    def set_walk_state(self):
+        if self.__debug:
+            print('System: WALK State')
+        self.__traffic_lights.show_red()    
+        self.__pedestrian_signals.show_walk()
+
+    def set_warning_state(self):
+        if self.__debug:
+            print('System: WARNING State')
+        self.__traffic_lights.show_red()    
+        self.__pedestrian_signals.show_warning()
+
+    def error_state(self):
+        print('System: ERROR State')
+        self.__traffic_lights.show_amber() # make flash
