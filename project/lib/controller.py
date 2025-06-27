@@ -102,3 +102,30 @@ class Controller:
     def error_state(self):
         print('System: ERROR State')
         self.__traffic_lights.show_amber() # make flash
+
+    def update(self):
+        print('Running')
+        now = time()
+        if self.state == 'IDLE':
+            self.set_idle_state()
+            if self.__pedestrian_signals.is_button_pressed() and now - self.last_state_change >= 5:
+                self.state = 'CHANGING'
+                self.last_state_change = now
+        elif self.state == 'CHANGING':
+            self.set_change_state()
+            if now - self.last_state_change >= 5:
+                self.state = 'WALK'
+                self.last_state_change = now
+        elif self.state == 'WALK':
+            self.set_walk_state()
+            if now - self.last_state_change >= 5:
+                self.state = 'WARNING'
+                self.last_state_change = now
+        elif self.state == 'WARNING':
+            self.set_warning_state()
+            if now - self.last_state_change >= 5:
+                self.state = 'IDLE'
+                self.__pedestrian_signals.reset_button()
+                self.last_state_change = now
+        else:
+            self.error_state()
